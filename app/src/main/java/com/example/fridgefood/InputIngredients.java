@@ -1,15 +1,21 @@
 package com.example.fridgefood;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.view.LayoutInflater;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.content.Context;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,8 +26,12 @@ public class InputIngredients extends AppCompatActivity {
     private Button backButton;
     private Button getRecipesButton;
     private ImageButton captureCamera;
+    private ImageButton addIngredientButton;
+    private LinearLayout container;
+    private EditText ingredientInput;
     private ImageView imageView;
     private ImageButton imageButton;
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +73,28 @@ public class InputIngredients extends AppCompatActivity {
             }
         });
 
+        addIngredientButton = findViewById(R.id.addIngredient);
+        ingredientInput = findViewById(R.id.ingredientInput);
+        container = findViewById(R.id.ingredientsList);
+        addIngredientButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                LayoutInflater layoutInflater =
+                        (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                final View addView = layoutInflater.inflate(R.layout.row, null);
+                TextView textOut = (TextView)addView.findViewById(R.id.textout);
+                textOut.setText(ingredientInput.getText().toString());
+                Button buttonRemove = (Button)addView.findViewById(R.id.remove);
+                buttonRemove.setOnClickListener(new View.OnClickListener(){
+
+                    @Override
+                    public void onClick(View v) {
+                        ((LinearLayout)addView.getParent()).removeView(addView);
+                    }});
+
+                container.addView(addView);
+            };
+        });
     }
 
     @Override
