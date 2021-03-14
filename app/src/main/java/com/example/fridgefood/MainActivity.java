@@ -7,9 +7,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     private Button button;
     private Button savedRecipesButton;
+    private RequestQueue mQueue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +36,26 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(page);
             }
         });
+        ArrayList<Ingredient> l = new ArrayList<>();
+        l.add(new Ingredient("bananas"));
+        l.add(new Ingredient("milk"));
+        l.add(new Ingredient("sugar"));
+        sendRequest(l, new GetRecipes.VolleyResponseListener() {
+            @Override
+            public void onError(String message) {
 
+            }
+
+            @Override
+            public void onResponse(String response) {
+
+            }
+
+            @Override
+            public void onResponse(int response) {
+                ViewRecipes.recipeIDs.add(response);
+            }
+        });
         savedRecipesButton = findViewById(R.id.savedRecipesButton);
         savedRecipesButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,5 +64,48 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(page);
             }
         });
+    }
+    public void sendRequest(ArrayList<Ingredient> list, final GetRecipes.VolleyResponseListener volleyResponseListener) {
+        mQueue = Volley.newRequestQueue(this);
+        //System.out.println("on the right function");
+        //String url = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=3&apiKey=ee50286cf5474505a7f2b94cb3866aa2";
+        String url = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=";
+        for (int i = 0; i < list.size(); i++) {
+            String name = list.get(i).getName();
+            if (i != 0) {
+                url += ",+" + name;
+            } else {
+                url += name;
+            }
+        }
+        url += "&number=4&apiKey=f663279861a14c8a90c5f3b17f8c09b0";
+        //String url = "https://jsonplaceholder.typicode.com/todos/1";
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        //System.out.println("here now in onResponse");
+                        for (int i = 0; i < response.length(); i++) {
+                            int id = 0;
+                            try {
+                                JSONObject obj = (JSONObject) response.get(i);
+                                id = obj.getInt("id");
+                                //System.out.println(id);
+                                //String url = "https://api.spoonacular.com/recipes/" + id + "/information?apiKey=ee50286cf5474505a7f2b94cb3866aa2";
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            //ViewRecipes.recipeIDs.add(id);
+                            volleyResponseListener.onResponse(id);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                volleyResponseListener.onError("Something wrong");
+            }
+        });
+        mQueue.add(request);
     }
 }

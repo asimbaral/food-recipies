@@ -18,12 +18,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.util.ArrayList;
+
+import static com.example.fridgefood.ViewRecipes.recipeIDs;
+import static com.example.fridgefood.ViewRecipes.recipesList;
+
 public class GetRecipes extends AppCompatActivity {
     private Button backButton;
     private Button getRecipesButton;
     private ImageButton captureCamera;
     private ImageView imageView;
     private ImageButton imageButton;
+    private RequestQueue mQueue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +54,11 @@ public class GetRecipes extends AppCompatActivity {
                 startActivity(page);
             }
         });
-
+        for (int id : recipeIDs) {
+            System.out.println("Here____________--------------");
+            String url = "https://api.spoonacular.com/recipes/" + id + "/information?apiKey=f663279861a14c8a90c5f3b17f8c09b0";
+            getRecipes(url);
+        }
         getRecipesButton = findViewById(R.id.getRecipesButton);
         getRecipesButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +88,42 @@ public class GetRecipes extends AppCompatActivity {
 
     }
 
+    public interface VolleyResponseListener {
+        void onError(String message);
+
+        void onResponse(String response);
+
+        void onResponse(int response);
+    }
+
+
+    public void getRecipes(String url) {
+        mQueue = Volley.newRequestQueue(this);
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            System.out.println("_____________________000000000000000000000");
+                            int time = response.getInt("readyInMinutes");
+                            String summary = response.getString("summary");
+                            String imageURL = response.getString("image");
+                            String recipeURL = response.getString("sourceUrl");
+                            recipesList.add(new Recipes(time, summary, imageURL, recipeURL));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        mQueue.add(request);
+
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
