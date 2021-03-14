@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.PopupWindow;
 
 public class MainActivity extends AppCompatActivity {
     private Button button;
     private Button savedRecipesButton;
+    private Button getInfoButton;
+    private PopupWindow popupWindow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,5 +34,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(page);
             }
         });
+
+        getInfoButton = findViewById(R.id.getInfo);
+        getInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog();
+            }
+        });
+    }
+
+    public void openDialog() {
+        InfoDialog dialog = new InfoDialog();
+        dialog.show(getSupportFragmentManager(), "More Info");
     }
 }
