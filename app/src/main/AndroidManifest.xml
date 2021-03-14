@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".GetRecipes"></activity>
+        <activity android:name=".InputIngredients"></activity>
         <activity android:name=".ViewRecipes"></activity>
         <activity android:name=".SavedRecipes"></activity>
     </application>

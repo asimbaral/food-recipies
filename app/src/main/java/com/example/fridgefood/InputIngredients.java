@@ -1,7 +1,6 @@
 package com.example.fridgefood;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -9,7 +8,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.graphics.Bitmap;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -18,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-public class GetRecipes extends AppCompatActivity {
+public class InputIngredients extends AppCompatActivity {
     private Button backButton;
     private Button getRecipesButton;
     private ImageButton captureCamera;
@@ -47,9 +45,9 @@ public class GetRecipes extends AppCompatActivity {
             }
         });
 
-        if (ContextCompat.checkSelfPermission(GetRecipes.this,
+        if (ContextCompat.checkSelfPermission(InputIngredients.this,
                 Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(GetRecipes.this,
+            ActivityCompat.requestPermissions(InputIngredients.this,
                     new String[]{
                             Manifest.permission.CAMERA
                     }, 100);

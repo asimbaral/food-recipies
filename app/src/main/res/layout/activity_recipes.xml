@@ -5,7 +5,7 @@
     android:id="@+id/gett"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GetRecipes">
+    tools:context=".InputIngredients">
 
     <TextView
         android:layout_width="wrap_content"

@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent page = new Intent(v.getContext(), GetRecipes.class);
+                Intent page = new Intent(v.getContext(), InputIngredients.class);
                 startActivity(page);
             }
         });
