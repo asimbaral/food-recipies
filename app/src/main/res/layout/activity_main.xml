@@ -13,6 +13,7 @@
         android:layout_width="250dp"
         android:layout_height="48dp"
         android:gravity="center"
+        android:textStyle="bold"
         android:text="NUTRICIPE"
         android:textSize="42sp"
         app:layout_constraintBottom_toBottomOf="parent"
