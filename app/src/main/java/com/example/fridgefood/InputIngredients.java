@@ -22,7 +22,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import java.util.ArrayList;
+
 public class InputIngredients extends AppCompatActivity {
+    public ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
+
     private Button backButton;
     private Button getRecipesButton;
     private ImageButton captureCamera;
@@ -82,18 +86,22 @@ public class InputIngredients extends AppCompatActivity {
                 LayoutInflater layoutInflater =
                         (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 final View addView = layoutInflater.inflate(R.layout.row, null);
-                TextView textOut = (TextView)addView.findViewById(R.id.textout);
-                textOut.setText(ingredientInput.getText().toString());
-                Button buttonRemove = (Button)addView.findViewById(R.id.remove);
-                buttonRemove.setOnClickListener(new View.OnClickListener(){
-
-                    @Override
-                    public void onClick(View v) {
-                        ((LinearLayout)addView.getParent()).removeView(addView);
-                    }});
-
-                container.addView(addView);
-            };
+                final TextView textOut = (TextView)addView.findViewById(R.id.textout);
+                if(!ingredientInput.getText().toString().isEmpty()) {
+                    textOut.setText(ingredientInput.getText().toString());
+                    ingredients.add(new Ingredient(ingredientInput.getText().toString()));
+                    Button buttonRemove = (Button) addView.findViewById(R.id.remove);
+                    buttonRemove.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ingredients.remove(new Ingredient(textOut.getText().toString()));
+                            ((LinearLayout) addView.getParent()).removeView(addView);
+                        }
+                    });
+                    System.out.println(ingredients.toString());
+                    container.addView(addView);
+                }
+            }
         });
     }
 

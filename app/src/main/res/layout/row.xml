@@ -7,11 +7,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="30sp"
         android:text="Remove"/>
     <TextView
         android:id="@+id/textout"
+        android:textSize="24sp"
+        android:padding="8sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@id/remove"/>
+        android:layout_toLeftOf="@id/remove"
+        android:layout_marginLeft="30sp"/>
 </RelativeLayout>
