@@ -29,7 +29,7 @@ public class GetRecipes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.input_ingredients);
 
-        backButton = findViewById(R.id.returnToHome);
+        backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,7 +38,7 @@ public class GetRecipes extends AppCompatActivity {
             }
         });
 
-        getRecipesButton = findViewById(R.id.getRecipes);
+        getRecipesButton = findViewById(R.id.getRecipesButton);
         getRecipesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
