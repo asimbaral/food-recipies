@@ -13,51 +13,39 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="-149dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="-139dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="273dp"
-        app:srcCompat="@drawable/gradient_background"
-        tools:srcCompat="@drawable/gradient_background" />
+        android:layout_marginEnd="273dp" />
 
     <TextView
         android:id="@+id/nameView"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="187dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="150dp"
         android:text="Spaghetti"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="14sp" />
 
     <TextView
         android:id="@+id/timeView"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/nameView"
-        android:layout_alignLeft="@id/nameView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginLeft="138dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="95dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="10dp"
         android:text="Time:"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="12sp" />
 
     <TextView
         android:id="@+id/caloriesView"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/timeView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="198dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="10dp"
         android:text="Calories:"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="12sp" />
@@ -66,9 +54,9 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="315dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginTop="33dp"
         android:text="view" />
 </RelativeLayout>

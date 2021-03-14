@@ -1,12 +1,12 @@
 package com.example.fridgefood;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.PopupWindow;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 url += name;
             }
         }
-        url += "&number=4&apiKey=9f294c148da8404996cf5d21ff305425";
+        url += "&number=6&apiKey=c5e76c35ab7d47f8b93704a03fb137dd";
         //String url = "https://jsonplaceholder.typicode.com/todos/1";
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
