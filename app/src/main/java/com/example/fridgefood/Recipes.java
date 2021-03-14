@@ -5,11 +5,21 @@ public class Recipes {
     private String summary;
     private String imageURL;
     private String recipeURL;
-    public Recipes(int time, String summary, String imageURL, String recipeURL) {
+    private String name;
+    public Recipes(int time, String summary, String imageURL, String recipeURL, String name) {
+        this.name = name;
         this.time = time;
         this.summary = summary;
         this.imageURL = imageURL;
         this.recipeURL = recipeURL;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getTime() {

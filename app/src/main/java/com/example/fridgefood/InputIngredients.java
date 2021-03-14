@@ -66,8 +66,7 @@ public class InputIngredients extends AppCompatActivity {
             }
         });
         for (int id : recipeIDs) {
-            System.out.println("Here____________--------------");
-            String url = "https://api.spoonacular.com/recipes/" + id + "/information?apiKey=f663279861a14c8a90c5f3b17f8c09b0";
+            String url = "https://api.spoonacular.com/recipes/" + id + "/information?apiKey=9f294c148da8404996cf5d21ff305425";
             getRecipes(url);
         }
         getRecipesButton = findViewById(R.id.getRecipesButton);
@@ -87,7 +86,6 @@ public class InputIngredients extends AppCompatActivity {
                     }, 100);
         }
 
-        //imageButton = findViewById(R.id.takePhoto);
         captureCamera = findViewById(R.id.takePhoto);
         captureCamera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,12 +139,12 @@ public class InputIngredients extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            System.out.println("_____________________000000000000000000000");
                             int time = response.getInt("readyInMinutes");
                             String summary = response.getString("summary");
                             String imageURL = response.getString("image");
                             String recipeURL = response.getString("sourceUrl");
-                            recipesList.add(new Recipes(time, summary, imageURL, recipeURL));
+                            String name = response.getString("title");
+                            recipesList.add(new Recipes(time, summary, imageURL, recipeURL, name));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
