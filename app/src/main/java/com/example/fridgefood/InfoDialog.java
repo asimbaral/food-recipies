@@ -14,13 +14,13 @@ public class InfoDialog extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("What is NUTRECIPE?")
-                .setMessage("NUTRECIPE is an easy to use mobile nutrition app that anybody can use "
-                        + "to take one step closer to eating healthier. NUTRECIPE provides healthy,"
+        builder.setTitle("What is NUTRICIPE?")
+                .setMessage("NUTRICIPE is an easy to use mobile nutrition app that anybody can use "
+                        + "to take one step closer to eating healthier. NUTRICIPE provides healthy,"
                         + " nutritious, and easy to prepare meals based on the ingredients on hand "
                         + "and allows for multiple customizable and healthy options, encouraging "
                         + "healthier and more fulfilling eating habits and overall lifestyle.")
-                .setNeutralButton("Return", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Return", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 

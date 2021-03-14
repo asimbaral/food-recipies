@@ -8,11 +8,11 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/nutrecipe"
+        android:id="@+id/nutricipe"
         android:layout_width="250dp"
         android:layout_height="48dp"
         android:gravity="center"
-        android:text="NUTRECIPE"
+        android:text="NUTRICIPE"
         android:textSize="42sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
