@@ -14,13 +14,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        button = findViewById(R.id.getRecipesButton);
+        button = findViewById(R.id.inputIngredientsButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent page = new Intent(v.getContext(), GetRecipes.class);
                 startActivity(page);
-                System.out.println("In the view recipes screen now.");
             }
         });
 

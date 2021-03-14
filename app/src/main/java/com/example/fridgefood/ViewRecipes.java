@@ -12,8 +12,8 @@ public class ViewRecipes extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_recipes);
-        backButton = findViewById(R.id.doneButton);
+        setContentView(R.layout.get_recipes);
+        backButton = findViewById(R.id.returnToHome);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -10,6 +10,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.graphics.Bitmap;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
@@ -20,15 +21,15 @@ import androidx.core.content.ContextCompat;
 public class GetRecipes extends AppCompatActivity {
     private Button backButton;
     private Button getRecipesButton;
-    private Button captureCamera;
+    private ImageButton captureCamera;
     private ImageView imageView;
-
+    private ImageButton imageButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipes);
+        setContentView(R.layout.input_ingredients);
 
-        backButton = findViewById(R.id.backButton);
+        backButton = findViewById(R.id.returnToHome);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,7 +38,7 @@ public class GetRecipes extends AppCompatActivity {
             }
         });
 
-        getRecipesButton = findViewById(R.id.getRecipesButton);
+        getRecipesButton = findViewById(R.id.getRecipes);
         getRecipesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,9 +55,8 @@ public class GetRecipes extends AppCompatActivity {
                     }, 100);
         }
 
-        imageView = findViewById(R.id.imageView);
-
-        captureCamera = findViewById(R.id.cameraButton);
+        //imageButton = findViewById(R.id.takePhoto);
+        captureCamera = findViewById(R.id.takePhoto);
         captureCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,7 +72,7 @@ public class GetRecipes extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100) {
             Bitmap captureImage = (Bitmap) data.getExtras().get("data");
-            imageView.setImageBitmap(captureImage);
+            //imageView.setImageBitmap(captureImage);
         }
     }
 }
