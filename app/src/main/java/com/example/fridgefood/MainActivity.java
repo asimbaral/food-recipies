@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.PopupWindow;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private Button button;
     private Button savedRecipesButton;
     private RequestQueue mQueue;
+    private Button getInfoButton;
+    private PopupWindow popupWindow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent page = new Intent(v.getContext(), GetRecipes.class);
+                Intent page = new Intent(v.getContext(), InputIngredients.class);
                 startActivity(page);
             }
         });
@@ -40,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         l.add(new Ingredient("bananas"));
         l.add(new Ingredient("milk"));
         l.add(new Ingredient("sugar"));
-        sendRequest(l, new GetRecipes.VolleyResponseListener() {
+        sendRequest(l, new InputIngredients.VolleyResponseListener() {
             @Override
             public void onError(String message) {
 
@@ -64,8 +67,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(page);
             }
         });
+
+        getInfoButton = findViewById(R.id.getInfo);
+        getInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog();
+            }
+        });
     }
-    public void sendRequest(ArrayList<Ingredient> list, final GetRecipes.VolleyResponseListener volleyResponseListener) {
+
+    public void openDialog() {
+        InfoDialog dialog = new InfoDialog();
+        dialog.show(getSupportFragmentManager(), "More Info");
+    }
+    public void sendRequest(ArrayList<Ingredient> list, final InputIngredients.VolleyResponseListener volleyResponseListener) {
         mQueue = Volley.newRequestQueue(this);
         //System.out.println("on the right function");
         //String url = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=3&apiKey=ee50286cf5474505a7f2b94cb3866aa2";
